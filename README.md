@@ -23,7 +23,7 @@ Haberler; güncel haberleri listeleyen, kategorilere ayıran ve detaylarını ok
 ## Kurulum
 
 ```bash
-git clone https://github.com/<kullanici-adi>/Haberler.git
+git clone https://github.com/MERVEAKCAKAYA/Haberler.git
 cd Haberler
 open Haberler.xcodeproj
 ```
