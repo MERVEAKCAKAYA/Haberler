@@ -16,15 +16,30 @@ struct HaberView: View {
                 case .yukleniyor:
                     ProgressView("Yükleniyor…")
                 case .basarili(let haberler):
-                    List(haberler) { haber in
-                        NavigationLink(value: haber) {
-                           HStack {
-                               CachedImage(urlString: haber.imageURL)
-                               .frame(width: 60, height: 60)
-                               .clipShape(RoundedRectangle(cornerRadius: 8))
+                    List {
+                        ForEach(haberler) { haber in
+                            NavigationLink(value: haber) {
+                                HStack {
+                                    CachedImage(urlString: haber.imageURL)
+                                        .frame(width: 60, height: 60)
+                                        .clipShape(RoundedRectangle(cornerRadius: 8))
 
-                               Text(haber.title).font(.headline)
-                           }
+                                    Text(haber.title).font(.headline)
+                                }
+                            }
+                            .onAppear {
+                                if haber == haberler.last {
+                                    Task { await viewModel.loadMore() }
+                                }
+                            }
+                        }
+
+                        if viewModel.isLoadingMore {
+                            HStack {
+                                Spacer()
+                                ProgressView()
+                                Spacer()
+                            }
                         }
                     }
                 case .hata(let hata):

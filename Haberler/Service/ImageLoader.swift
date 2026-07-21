@@ -11,6 +11,7 @@ final class ImageLoader {
     static let shared = ImageLoader()
     private init() {}
 
+    //NSCache class oldugu icin url struct oldugu icin url as NSURL sekinde donusturup kullanmak gerek.
     private let cache = NSCache<NSURL, UIImage>()
 
     func image(from url: URL) async throws -> UIImage {
