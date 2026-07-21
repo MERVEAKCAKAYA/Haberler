@@ -16,11 +16,7 @@ struct HaberDetayView: View {
                 Color.clear
                     .frame(height: 220)
                     .overlay {
-                        AsyncImage(url: URL(string: haber.imageURL)) { image in
-                            image.resizable().scaledToFill()
-                        } placeholder: {
-                            ProgressView()
-                        }
+                        CachedImage(urlString: haber.imageURL)
                     }
                     .clipped()
 

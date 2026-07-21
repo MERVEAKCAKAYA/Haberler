@@ -19,11 +19,7 @@ struct HaberView: View {
                     List(haberler) { haber in
                         NavigationLink(value: haber) {
                            HStack {
-                               AsyncImage(url: URL(string: haber.imageURL)) { image in
-                                   image.resizable().scaledToFill()
-                               } placeholder: {
-                                   ProgressView()
-                               }
+                               CachedImage(urlString: haber.imageURL)
                                .frame(width: 60, height: 60)
                                .clipShape(RoundedRectangle(cornerRadius: 8))
 
