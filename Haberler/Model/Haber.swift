@@ -20,9 +20,10 @@ struct HaberYaniti: Codable, Identifiable, Hashable{
     let authors: [HaberYanitiAuthor]
     let imageURL: String
     let publishedAt: Date
+    let summary: String
 
     enum CodingKeys: String, CodingKey {
-        case id, title, url, authors
+        case id, title, url, authors, summary
         case imageURL = "image_url"
         case publishedAt = "published_at"
     }
