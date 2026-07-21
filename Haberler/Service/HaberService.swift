@@ -25,4 +25,19 @@ class HaberService {
         decoder.dateDecodingStrategy = .iso8601
         return try decoder.decode(HaberListesiYaniti.self, from: data)
     }
+    
+    func haberAra(metin: String) async throws -> [HaberYaniti] {
+        var components = URLComponents(string: "https://api.spaceflightnewsapi.net/v4/articles/")!
+        components.queryItems = [
+            URLQueryItem(name: "title_contains", value: metin),
+            URLQueryItem(name: "limit", value: "\(limit)")
+        ]
+        let url = components.url!
+
+        let (data, _) = try await URLSession.shared.data(from: url)
+
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return try decoder.decode(HaberListesiYaniti.self, from: data).results
+    }
 }

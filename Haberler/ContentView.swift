@@ -9,7 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-      HaberView()
+        TabView {
+            HaberView()
+                .tabItem { Label("Haberler", systemImage: "newspaper") }
+
+            AramaView()
+                .tabItem { Label("Ara", systemImage: "magnifyingglass") }
+        }
     }
 }
 
